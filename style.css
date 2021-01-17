@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    padding-left: 16px;
+    justify-content: space-between;
+    font-family: 'Rajdhani', sans-serif;
+    background-color: darkslategray;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    padding-right: 16px;
+    width: 60px;
+    height: 60px;
+}
+
+.navigationbar {
+    display: flex;
+    font-family: 'News Cycle', sans-serif;
+    height: 6%;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(195,195,195);
+    border: black 1px solid;
+    width: 30%;
+}
+
+.chats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(195,195,195);
+    border: black 1px solid;
+    width: 70%;
+}
+
+h3:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    color: rgb(71,71,71);
+}
+
+.main-section {
+    display: flex;
+    height: 100vh;
+}
+
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(30,30,30);
+    width: 30%;
+}
+
+.contactcontainer {
+    display: flex;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    border: solid 1px black;
+}
+
+.contactpic {
+    display: flex;
+    margin-right: 20px;
+    border-radius: 100%;
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+}
+
+.contactname {
+    display: flex;
+    font-family: 'Neucha', cursive;
+    color: rgb(195,195,195);
+    font-weight: lighter;
+}
+
+.contactname:hover {
+    transform: scale(1.1);
+    text-shadow:
+     0 0 10px #FFFFFF,
+     0 0 20px #FFFFFF,
+     0 0 30px #FFFFFF,
+     0 0 40px rgb(143,218,208),
+     0 0 70px rgb(143,218,208),
+     0 0 80px rgb(143,218,208),
+     0 0 100px rgb(143,218,208)
+}
+
+.input {
+    display: flex;
+    margin-left: auto;
+    margin-right: 20px; 
+}
+
+.chat-section {
+    display: flex;
+    justify-content: center;
+    background-image: url(img/wallpaper1.jpeg);
+    background-position: cover;
+    width: 70%;
+}
+
+.icons {
+    height: 30px;
+    width: 30px;
+}
+
+.h1 {
+    display: flex;
+    align-items: center;
+    font-family: 'Sigmar One', cursive;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 70;
+    color: rgb(143,218,208);
+}
+
+.d-none {
+    display: none;
+}
+
+.justthechat {
+    display: flex;
+    justify-content: center;
+    background-image: url(img/wallpaper1.jpeg);
+    background-position: cover;
+    width: 70%;
+}
