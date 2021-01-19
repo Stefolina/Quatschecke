@@ -7,7 +7,7 @@ body {
     padding-left: 16px;
     justify-content: space-between;
     font-family: 'Rajdhani', sans-serif;
-    background-color: darkslategray;
+    background-color: rgb(66,73,79);
     color: white;
 }
 
@@ -52,13 +52,13 @@ h3:hover {
 
 .main-section {
     display: flex;
-    height: 100vh;
+    height: auto;
 }
 
 .contact-section {
     display: flex;
     flex-direction: column;
-    background-color: rgb(30,30,30);
+    background-color: rgb(0,19,26);
     width: 30%;
 }
 
@@ -80,6 +80,10 @@ h3:hover {
     height: 60px;
 }
 
+.contactpic:hover {
+    transform: scale(1.4);
+}
+
 .contactname {
     display: flex;
     font-family: 'Neucha', cursive;
@@ -89,6 +93,7 @@ h3:hover {
 
 .contactname:hover {
     transform: scale(1.1);
+    cursor: pointer;
     text-shadow:
      0 0 10px #FFFFFF,
      0 0 20px #FFFFFF,
@@ -99,28 +104,33 @@ h3:hover {
      0 0 100px rgb(143,218,208)
 }
 
-.input {
+.status {
     display: flex;
     margin-left: auto;
     margin-right: 20px; 
+    height: 30px;
+    width: 30px;
+}
+
+.status:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .chat-section {
     display: flex;
-    justify-content: center;
-    background-image: url(img/wallpaper1.jpeg);
-    background-position: cover;
+    justify-content: flex-end;
+    flex-direction: column;
+    background-image: url(img/wallpaper2.jpeg);
+    background-position: center;
+    background-size: cover;
     width: 70%;
-}
-
-.icons {
-    height: 30px;
-    width: 30px;
 }
 
 .h1 {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-family: 'Sigmar One', cursive;
     text-shadow: black 0.1em 0.1em 0.2em;
     font-size: 70;
@@ -135,6 +145,99 @@ h3:hover {
     display: flex;
     justify-content: center;
     background-image: url(img/wallpaper1.jpeg);
-    background-position: cover;
+    background-size: cover;
     width: 70%;
+}
+
+.Overlay {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+.overlay-Pic {
+    object-fit: cover;
+}
+
+.delete {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.input {
+    display: flex;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.icons {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.icons:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.user-area {
+    display: flex;
+    padding-top: 10px;
+    background-color: rgb(66,73,79);
+    height: 40px;
+}
+
+.smiley-menu {
+    position: absolute;
+    display: flex;
+    margin-top: 67vh;
+    align-items: center;
+    right: 0;
+    top: 122px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    width: 40vh;
+    height: 10vh;
+    background-color: white;
+    border: 1px solid black;
+    transform: translateX(501px);
+    transition: all 1s ease-in-out;
+    box-shadow: 3px -3px 3px 1px rgb(230,230,230);
+    background-color: rgb(245,245,245);
+    transform: translateX(0);
+}
+
+.close-button {
+    display: flex;
+    margin-left: 20px;
+    font-size: 20;
+    cursor: pointer;
+}
+
+.S-button {
+    cursor: pointer;
+}
+
+.message {
+    display: flex;
+    background-color: white;
+    font-family: 'Neucha', cursive;
 }
