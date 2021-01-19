@@ -2,6 +2,9 @@
  * Changing Contact and Chat Header
  */
 function changeContactHeader() {
+    setTimeout(function () {
+        document.getElementById('contact').innerHTML = 'Kontakte';
+    }, 0);
 
     setTimeout(function () {
         document.getElementById('contact').innerHTML = 'Deine Quatschecke-Buddys';
@@ -11,6 +14,9 @@ function changeContactHeader() {
 }
 
 function changeChatHeader() {
+    setTimeout(function () {
+        document.getElementById('chat').innerHTML = 'Chats';
+    }, 0);
 
     setTimeout(function () {
         document.getElementById('chat').innerHTML = 'Deine persönliche Quatschecke';
@@ -72,19 +78,21 @@ function show() {
             <div class="contactcontainer">
                 <img src="${contactline['image']}" class="contactpic">
                 <h2 class="contactname" onclick="showChat()">${contactline['name']}</h2>
-                <img src="icons/status.png" class="status" onclick="showStatus()">
+                <img src="icons/status.png" class="status" onclick="showStatus(i)">
             </div>
         `;
     }
 }
 
 /**
-* open Status
-*/
-function showStatus() {
+ * Open Status 
+ */
+
+ 
+function showStatus(i) {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay').classList.add('Overlay');
-    document.getElementById('mypicture').src = "${contacts['status']}";
+    document.getElementById('mypicture').src = contacts[i]['status'];
 }
 
 /** 
@@ -103,11 +111,21 @@ function showChat() {
         <div id="message-area" class="message-area"></div>
         <div class="user-area">
         <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
-        <img class="icons" src="icons/upload.svg">
         <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
-        <img class="icons" src="icons/send.png" onclick="addMessage()">
+        <img class="icons" src="icons/send.png" onclick="addMessage(); saveMessages(); loadMessages()">
         </div>
         `
+}
+
+/**
+ * Push Message with "Enter"
+ */
+function init() {
+    document.addEventListener("keydown", function (u) {
+        if (u.keyCode == 13) {  //checks whether the pressed key is "Enter"
+        addMessage();
+    }
+    });
 }
 
 /**
@@ -158,3 +176,15 @@ function addMessage() {
 /**
  * LocalStorage Stuff
  */
+function saveMessages(){
+    let texts = loadMessages('message');
+
+        let text = document.getElementById('message');
+        texts.push(text.value);
+    
+        localStorage.setItem('message', JSON.stringify(texts));
+}
+
+function loadMessages(key){
+    return JSON.parse(localStorage.getItem(key)) || [];
+}
