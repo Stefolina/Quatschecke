@@ -18,7 +18,15 @@
         <script src="script.js"></script>
     </head>
 
-    <body onload="changeText1(); changeText2(); show()">
+    <body onload="changeContactHeader(); changeChatHeader(); show()">
+
+        <div class="d-none" id="overlay">
+
+            <img src="icons/close.png" class="delete" onclick="closeStatus()">
+            <img class="overlay-Pic" id="mypicture">
+
+        </div>
+
         <div class="header">
             <h2>Quatschecke</h2>
             <img src="icons/logo.svg" class="logo">
@@ -35,6 +43,18 @@
 
             <div id="chats" class="chat-section">
                 <h1 class="h1">Deine Quatschecke</h1>
+            </div>
+
+            <div id="smileys" class="d-none">
+
+                <button class="S-button" onclick="pushSmiley('🤔')">🤔</button>
+                <button class="S-button" onclick="pushSmiley('😎')">😎</button>
+                <button class="S-button" onclick="pushSmiley('😂')">😂</button>
+                <button class="S-button" onclick="pushSmiley('😍')">😍</button>
+                <button class="S-button" onclick="pushSmiley('😭')">😭</button>
+
+                <h1 onclick="closeSmileys()" class="close-button">X</h1>
+
             </div>
 
         </div>
