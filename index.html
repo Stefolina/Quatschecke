@@ -18,12 +18,12 @@
         <script src="script.js"></script>
     </head>
 
-    <body onload="changeContactHeader(); changeChatHeader(); show()">
+    <body onload="changeContactHeader(); changeChatHeader(); show(); init();">
 
         <div class="d-none" id="overlay">
 
             <img src="icons/close.png" class="delete" onclick="closeStatus()">
-            <img class="overlay-Pic" id="mypicture">
+            <img onclick="showStatus(i)" class="overlay-Pic" id="mypicture">
 
         </div>
 
