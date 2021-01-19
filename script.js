@@ -1,60 +1,67 @@
-// Textchanging
-function changeText1() {
-    setTimeout(function () {
-        document.getElementById('contact').innerHTML = 'Kontakte';
-    }, 0);
+/**
+ * Changing Contact and Chat Header
+ */
+function changeContactHeader() {
 
     setTimeout(function () {
         document.getElementById('contact').innerHTML = 'Deine Quatschecke-Buddys';
     }, 3000);
 
-    setTimeout(changeText1, 6000);
+    setTimeout(changeContactHeader, 6000);
 }
 
-function changeText2() {
-    setTimeout(function () {
-        document.getElementById('chat').innerHTML = 'Chats';
-    }, 0);
+function changeChatHeader() {
 
     setTimeout(function () {
         document.getElementById('chat').innerHTML = 'Deine persönliche Quatschecke';
     }, 3000);
 
-    setTimeout(changeText2, 6000);
+    setTimeout(changeChatHeader, 6000);
 }
 
-// Contactdefinition
+/**
+ * Contactdefinition
+ */
 let contacts = [{
     'image': 'img/Alex.jpeg',
     'name': 'Alex',
+    'status': 'img/StatusAlex.jpeg',
 },
 {
     'image': 'img/Jakob.jpeg',
     'name': 'Jakob',
+    'status': 'img/StatusJakob.jpeg',
 },
 {
     'image': 'img/Marie.jpeg',
     'name': 'Marie',
+    'status': 'img/StatusMarie.jpeg',
 },
 {
     'image': 'img/Nadine.jpeg',
     'name': 'Nadine',
+    'status': 'img/StatusNadine.jpeg',
 },
 {
     'image': 'img/Peter.jpeg',
     'name': 'Peter',
+    'status': 'img/StatusPeter.jpeg',
 },
 {
     'image': 'img/Papa.jpeg',
     'name': 'Papa',
+    'status': 'img/StatusPapa.jpeg',
 },
 {
     'image': 'img/Tanja.jpeg',
     'name': 'Tanja',
+    'status': 'img/StatusTanja.jpeg',
 }
 ];
 
-// show
+/**
+ * show the contacts
+ */
 function show() {
  
     for (let i = 0; i < contacts.length; i++) {
@@ -64,38 +71,90 @@ function show() {
         
             <div class="contactcontainer">
                 <img src="${contactline['image']}" class="contactpic">
-                <h2 class="contactname">${contactline['name']}</h2>
-                <div class="input"><input onclick="showChat(i)" type="checkbox"></div>
+                <h2 class="contactname" onclick="showChat()">${contactline['name']}</h2>
+                <img src="icons/status.png" class="status" onclick="showStatus()">
             </div>
         `;
     }
 }
 
-function showChat(i){
+/**
+* open Status
+*/
+function showStatus() {
+    document.getElementById('overlay').classList.remove('d-none');
+    document.getElementById('overlay').classList.add('Overlay');
+    document.getElementById('mypicture').src = "${contacts['status']}";
+}
+
+/** 
+*close Status
+*/
+function closeStatus() {
+    document.getElementById('overlay').classList.remove('Overlay');
+    document.getElementById('overlay').classList.add('d-none');
+}
+
+/**
+*show chat
+*/
+function showChat() {
+    document.getElementById('chats').innerHTML = `
+        <div id="message-area" class="message-area"></div>
+        <div class="user-area">
+        <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
+        <img class="icons" src="icons/upload.svg">
+        <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
+        <img class="icons" src="icons/send.png" onclick="addMessage()">
+        </div>
+        `
+}
+
+/**
+ * Open and Close Smiley menu
+ */
+function showSmileys() {
+    document.getElementById('smileys').classList.remove('d-none');
+    document.getElementById('smileys').classList.add('smiley-menu');
+}
+
+function closeSmileys() {
+    document.getElementById('smileys').classList.remove('smiley-menu');
+    document.getElementById('smileys').classList.add('d-none');
 
 }
 
-/* for (let i = 0; i < chats.length; i++) {
-    let chatrow = chats[i];
-    chatHTML += `<div>${chat}</div>`;
-do
-cument.getElementById('postcontainer').innerHTML += `
-    <div class="postcontainer">
-        <div class="author">${post['author']} </div>
-        <div class="location">${post['location']}</div>
-        <img src="${post['image']}" class="post-img">
-        <div class="iconsrow"><img src="icons/likes.png" class="icons">
-        <img src="icons/message.jpg" class="icons"></div>
-        <div class="text">${post['text']}</div>
-        <div class="commentrow" id="comments">
-                ${chatsHTML}
+/**
+ * Push smiley into inputfield
+ */
+function pushSmiley(e) {
+    message.value += e;
+}
 
-    
+/**
+ * send Message
+ */
+let messages = [];
 
+function addMessage() {
+    let message = document.getElementById('message').value;
+    messages.push(message);
 
-/*<div class="user-area">
-<img class="icons" src="icons/smiley1.png">
-<img class="icons" src="icons/upload.jpg">
-<input placeholder="Schreibe eine Nachricht" type="text">
-<img class="icons" src="icons/send.png">
-</div>*/
+    let MyMessage = document.getElementById('message-area');
+    MyMessage.innerHTML = '';
+
+    for (let i=0; i < messages.length; i++) {
+        let m = messages[i];
+        MyMessage.innerHTML += `
+        <div class="message">
+            ${m}
+        </div>
+        `
+    }
+
+    document.getElementById('message').value = '';
+}
+
+/**
+ * LocalStorage Stuff
+ */
