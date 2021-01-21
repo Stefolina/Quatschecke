@@ -1,64 +1,44 @@
 /**
- * Changing Contact and Chat Header
- */
-function changeContactHeader() {
-    setTimeout(function () {
-        document.getElementById('contact').innerHTML = 'Kontakte';
-    }, 0);
-
-    setTimeout(function () {
-        document.getElementById('contact').innerHTML = 'Deine Quatschecke-Buddys';
-    }, 3000);
-
-    setTimeout(changeContactHeader, 6000);
-}
-
-function changeChatHeader() {
-    setTimeout(function () {
-        document.getElementById('chat').innerHTML = 'Chats';
-    }, 0);
-
-    setTimeout(function () {
-        document.getElementById('chat').innerHTML = 'Deine persönliche Quatschecke';
-    }, 3000);
-
-    setTimeout(changeChatHeader, 6000);
-}
-
-/**
  * Contactdefinition
  */
 let contacts = [{
+    'id': '1',
     'image': 'img/Alex.jpeg',
     'name': 'Alex',
     'status': 'img/StatusAlex.jpeg',
 },
 {
+    'id': '2',
     'image': 'img/Jakob.jpeg',
     'name': 'Jakob',
     'status': 'img/StatusJakob.jpeg',
 },
 {
+    'id': '3',
     'image': 'img/Marie.jpeg',
     'name': 'Marie',
     'status': 'img/StatusMarie.jpeg',
 },
 {
+    'id': '4',
     'image': 'img/Nadine.jpeg',
     'name': 'Nadine',
     'status': 'img/StatusNadine.jpeg',
 },
 {
+    'id': '5',
     'image': 'img/Peter.jpeg',
     'name': 'Peter',
     'status': 'img/StatusPeter.jpeg',
 },
 {
+    'id': '6',
     'image': 'img/Papa.jpeg',
     'name': 'Papa',
     'status': 'img/StatusPapa.jpeg',
 },
 {
+    'id': '7',
     'image': 'img/Tanja.jpeg',
     'name': 'Tanja',
     'status': 'img/StatusTanja.jpeg',
@@ -78,7 +58,8 @@ function show() {
             <div class="contactcontainer">
                 <img src="${contactline['image']}" class="contactpic">
                 <h2 class="contactname" onclick="showChat()">${contactline['name']}</h2>
-                <img src="icons/status.png" class="status" onclick="showStatus(i)">
+                <h2 class="contactnameResponsive" onclick="showChatResponsive()">${contactline['name']}</h2>
+                <img src="icons/status.png" class="status" onclick="showStatus(${i})">
             </div>
         `;
     }
@@ -87,8 +68,6 @@ function show() {
 /**
  * Open Status 
  */
-
- 
 function showStatus(i) {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay').classList.add('Overlay');
@@ -109,12 +88,39 @@ function closeStatus() {
 function showChat() {
     document.getElementById('chats').innerHTML = `
         <div id="message-area" class="message-area"></div>
-        <div class="user-area">
+        <div id="user-area" class="user-area">
         <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
         <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
         <img class="icons" src="icons/send.png" onclick="addMessage(); saveMessages(); loadMessages()">
         </div>
         `
+}
+
+/**
+ * Responsive Version
+ */
+function showChatResponsive() {
+    document.getElementById('chats').innerHTML = `
+        <div id="message-area" class="message-area"></div>
+        <div class="user-area">
+        <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
+        <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
+        <img class="icons" src="icons/send.png" onclick="addMessage(); saveMessages(); loadMessages()">
+        <img class="arrow" src="icons/arrow.png" onclick="closeChats()">
+        </div>
+        `
+
+        document.getElementById('chats').classList.remove('chat-section');
+        document.getElementById('chats').classList.add('chat-sectionResponsive');
+        document.getElementById('contactcontainer').classList.add('d-none');
+}
+
+function closeChats() {
+    document.getElementById('contactcontainer').classList.remove('d-none');
+    document.getElementById('contactcontainer').classList.add('contact-section');
+    document.getElementById('chats').classList.remove('chat-sectionResponsive');
+    document.getElementById('chats').classList.add('chat-section');
+    
 }
 
 /**
@@ -158,6 +164,8 @@ function addMessage() {
     let message = document.getElementById('message').value;
     messages.push(message);
 
+    setArray('message', messages);
+
     let MyMessage = document.getElementById('message-area');
     MyMessage.innerHTML = '';
 
@@ -176,15 +184,19 @@ function addMessage() {
 /**
  * LocalStorage Stuff
  */
-function saveMessages(){
-    let texts = loadMessages('message');
-
-        let text = document.getElementById('message');
-        texts.push(text.value);
-    
-        localStorage.setItem('message', JSON.stringify(texts));
+function loadMessage() {
+    message = getArray('message');
+    document.getElementById('message-area').innerHTML += `<div class="message">
+    ${m}</div>
+    `
 }
 
-function loadMessages(key){
-    return JSON.parse(localStorage.getItem(key)) || [];
+function setArray(key, array){
+    localStorage.setItem(key, JSON.stringify(array));
 }
+
+function getArray(key) {
+    return JSON.parse(localStorage.getItem(key));
+}
+
+
