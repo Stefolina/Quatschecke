@@ -266,6 +266,14 @@ h3:hover {
     margin-right: auto;
 }
 
+.arrow {
+    display: flex;
+    margin-left: 70px;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+
 /* For a nicer view*/
 @media (max-width: 1160px) {
     .h1 {
@@ -425,6 +433,10 @@ h3:hover {
     .Overlay {
         justify-content: flex-start;
     }
+
+    .arrow {
+        margin-left: 30px;
+    }
 }
 
 @media (max-width: 376px) {
@@ -432,10 +444,6 @@ h3:hover {
     .overlay-Pic {
         height: 40vh;
         width: 30vh;
-    }
-
-    .arrow {
-        margin-left: 50px;
     }
 }
 
