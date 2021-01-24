@@ -38,6 +38,59 @@ let contacts = [{
 }
 ];
 
+let selectedUser = 'Marie';
+let users = [
+    { name: 'Alex', 'messages': [] },
+    { name: 'Jakob', 'messages': [] },
+    { name: 'Marie', 'messages': [] },
+    { name: 'Nadine', 'messages': [] },
+    { name: 'Peter', 'messages': [] },
+    { name: 'Papa', 'messages': [] },
+    { name: 'Tanja', 'messages': [] },
+    ];
+// <button addMessage()>Senden</button>;
+function addMessage() {
+    let msg = document.getElementById('...').value;
+    users[selectedUser]['messages'].push(msg);
+    saveUsers();
+    addMessage();
+}
+// showChat('Alex') showChat('Marie')
+function showChat(name) {
+    selectedUser = name;
+    addMessage();
+}
+function saveUsers(){
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+/**
+ * Selected Userchats
+ */
+let messages = [];
+
+/**
+ * send Message
+ */
+function addMessage() {
+    let message = document.getElementById('message').value;
+    messages.push(message);
+
+    let MyMessage = document.getElementById('message-area');
+    MyMessage.innerHTML = '';
+
+    for (let i=0; i < messages.length; i++) {
+        let m = messages[i];
+        MyMessage.innerHTML += `
+        <div class="message">
+            ${m}
+        </div>
+        `
+    }
+
+    document.getElementById('message').value = '';
+}
+
 /**
  * show the contacts
  */
@@ -84,7 +137,7 @@ function showChat() {
         <div id="user-area" class="user-area">
         <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
         <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
-        <img class="icons" src="icons/send.png" onclick="addMessage(); saveMessages(); loadMessages()">
+        <img class="icons" src="icons/send.png" onclick="addMessage(); saveUsers()">
         </div>
         `
 }
@@ -92,13 +145,13 @@ function showChat() {
 /**
  * Show chat Responsive Version
  */
-function showChatResponsive(name) {
+function showChatResponsive() {
     document.getElementById('chats').innerHTML = `
         <div id="message-area" class="message-area"></div>
         <div class="user-area">
         <img class="icons" src="icons/smiley1.png" onclick="showSmileys()">
         <input id="message" class="input" placeholder="Schreibe eine Nachricht" type="text">
-        <img class="icons" src="icons/send.png" onclick="addMessage(); saveMessages()">
+        <img class="icons" src="icons/send.png" onclick="addMessage(); saveUsers()">
         <img class="arrow" src="icons/arrow.png" onclick="closeChats()">
         </div>
         `
@@ -106,19 +159,6 @@ function showChatResponsive(name) {
         document.getElementById('chats').classList.remove('chat-section');
         document.getElementById('chats').classList.add('chat-sectionResponsive');
         document.getElementById('contactcontainer').classList.add('d-none');
-
-
-        selectedUser = name;
-        addMessage();
-
-        for (let i=0; i < name.length; i++) {
-            let t = name[i];
-            t.innerHTML += `
-            <div class="message">
-                ${t}
-            </div>
-            `
-        }
 }
 
 
@@ -130,7 +170,6 @@ function closeChats() {
     document.getElementById('contactcontainer').classList.add('contact-section');
     document.getElementById('chats').classList.remove('chat-sectionResponsive');
     document.getElementById('chats').classList.add('chat-section');
-    
 }
 
 /**
@@ -163,51 +202,5 @@ function closeSmileys() {
  */
 function pushSmiley(e) {
     message.value += e;
-}
-
-/**
- * Selected Userchats
- */
-let messages = [];
-let selectedUser = 'Marie';
-let users = [
-    { name: 'Alex', 'messages': [] },
-    { name: 'Jakob', 'messages': [] },
-    { name: 'Marie', 'messages': [] },
-    { name: 'Nadine', 'messages': [] },
-    { name: 'Peter', 'messages': [] },
-    { name: 'Papa', 'messages': [] },
-    { name: 'Tanja', 'messages': [] }
-];
-
-/**
- * send Message
- */
-function addMessage() {
-    let messages = document.getElementById('message').value;
-    users[selectedUser]['messages'].push(users);
-    saveUsers();
-    addMessage();
-
-    let MyMessage = document.getElementById('message-area');
-    MyMessage.innerHTML = '';
-
-    for (let i=0; i < messages.length; i++) {
-        let m = messages[i];
-        MyMessage.innerHTML += `
-        <div class="message">
-            ${m}
-        </div>
-        `
-    }
-
-    document.getElementById('message').value = '';
-}
-
-/**
- * Local Storage Stuff
- */
-function saveUsers(){
-    localStorage.setItem('users', JSON.stringify(users));
 }
 
